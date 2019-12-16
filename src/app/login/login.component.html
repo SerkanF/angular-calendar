@@ -16,3 +16,36 @@
 
 {{yearSelected}}  {{monthSelected.label}}
 
+
+<div style="width: 700px;">
+    <div style="width: 100px; float: left;">
+        Lundi
+    </div>
+    <div style="width: 100px; float: left;">
+        Mardi
+    </div>
+    <div style="width: 100px; float: left;">
+        Mercredi
+    </div>
+    <div style="width: 100px; float: left;">
+        Jeudi
+    </div>
+    <div style="width: 100px; float: left;">
+        Vendredi
+    </div>
+    <div style="width: 100px; float: left;">
+        Samedi
+    </div>
+    <div style="width: 100px; float: left;">
+        Dimanche
+    </div>
+</div>
+
+<div style="width: 700px;">
+    <div 
+        *ngFor="let day of grillDays"
+        style="width: 100px; float: left;">
+            {{day.label}} {{day.value}}
+    </div>
+
+</div>

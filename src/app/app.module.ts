@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { FormsModule } from '@angular/forms';
 
@@ -21,6 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
 
     FormsModule,
+
+    FlexLayoutModule,
 
     AppRoutingModule
   ],

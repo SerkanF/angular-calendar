@@ -51,6 +51,8 @@ export class LoginComponent implements OnInit {
   years : number[] = [];
   months : any[] = [];
 
+  grillDays = null;
+
   days;
   firstDay;
 
@@ -106,23 +108,21 @@ export class LoginComponent implements OnInit {
 
     let self = this;
 
-    let grillDays = [
-
-    ];
+    this.grillDays = [];
 
     let positionDay = self.firstDay;
 
     if (self.firstDay == 0) {
-      grillDays.push(DAYS[1]);
-      grillDays.push(DAYS[2]);
-      grillDays.push(DAYS[3]);
-      grillDays.push(DAYS[4]);
-      grillDays.push(DAYS[5]);
-      grillDays.push(DAYS[6]);
+      this.grillDays.push(DAYS[1]);
+      this.grillDays.push(DAYS[2]);
+      this.grillDays.push(DAYS[3]);
+      this.grillDays.push(DAYS[4]);
+      this.grillDays.push(DAYS[5]);
+      this.grillDays.push(DAYS[6]);
     } else if (self.firstDay != 1) {
       for (let i = (self.firstDay -1 ); i >= 1 ; i--) {
         let tmp = {...DAYS[i]};
-        grillDays.push(tmp);
+        this.grillDays.push(tmp);
       }
     }
 
@@ -132,7 +132,7 @@ export class LoginComponent implements OnInit {
 
       tmp.value = i;
       
-      grillDays.push(tmp);
+      this.grillDays.push(tmp);
 
       if (positionDay == 6) {
         positionDay = 0;
@@ -141,8 +141,6 @@ export class LoginComponent implements OnInit {
       }
       
     }
-
-    console.log(grillDays);
 
   }
 
