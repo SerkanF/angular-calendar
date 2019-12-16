@@ -1,0 +1,18 @@
+<select name="" id="" [(ngModel)]="yearSelected" (change)="onChange()">
+
+    <option [ngValue]="year" *ngFor="let year of years" >
+        {{year}}
+    </option>
+
+</select>
+
+<select name="" id="" [(ngModel)]="monthSelected" (change)="onChange()">
+
+    <option [ngValue]="month" *ngFor="let month of months" >
+        {{month.label}}
+    </option>
+
+</select>
+
+{{yearSelected}}  {{monthSelected.label}}
+
