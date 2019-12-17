@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 const DAYS = {
-
   0 : {
     position : 0,
     label : "Dimanche",
@@ -37,8 +36,26 @@ const DAYS = {
     label : "Samedi",
     value : null
   },
-  
 };
+
+const ZONES = {
+  1 : {
+    start : "8am",
+    end : "9am"
+  },
+  2 : {
+    start : "9am",
+    end : "10am"
+  },
+  3 : {
+    start : "10am",
+    end : "11am"
+  },
+  4 : {
+    start : "11am",
+    end : "12am"
+  }
+}
 
 @Component({
   selector: 'app-login',
@@ -59,6 +76,8 @@ export class LoginComponent implements OnInit {
   yearSelected;
   monthSelected;
 
+  currentDate;
+
   constructor() {
 
   }
@@ -75,16 +94,13 @@ export class LoginComponent implements OnInit {
     self.yearSelected = self.years[0];
     self.monthSelected = self.months[0];
 
+    self.onChange();
+
   }
 
+  changeDay(day) {
 
-  initYears() {
-
-    let self = this;
-
-    for (let i = self.now.getFullYear() ; i < (self.now.getFullYear() + 5) ; i++) {
-      self.years.push(i);
-    }    
+    this.currentDate = day.value;
 
   }
 
@@ -92,13 +108,8 @@ export class LoginComponent implements OnInit {
 
     let self = this;
 
-    self.days = new Date(self.yearSelected, self.monthSelected.value + 1, 0).getDate()
+    self.days = new Date(self.yearSelected, self.monthSelected.value, 0).getDate()
     self.firstDay = new Date(self.yearSelected, self.monthSelected.value).getDay();
-
-    console.log(this.yearSelected);
-    console.log(this.monthSelected);
-
-    console.log("First day : " + self.firstDay + ", days : " + self.days);
 
     self.updateGrill();
 
@@ -130,7 +141,7 @@ export class LoginComponent implements OnInit {
 
       let tmp = {...DAYS[positionDay]}
 
-      tmp.value = i;
+      tmp.value = new Date(self.yearSelected, self.monthSelected.value, i);
       
       this.grillDays.push(tmp);
 
@@ -140,6 +151,25 @@ export class LoginComponent implements OnInit {
         positionDay++;
       }
       
+    }
+
+    if (this.grillDays.length < 42) {
+
+      let rest = 42 - this.grillDays.length;
+
+      for (let i = 1; i <= rest; i++) {
+        
+        let tmp = {...DAYS[positionDay]}
+        tmp.value = null;
+        this.grillDays.push(tmp);
+
+        if (positionDay == 6) {
+          positionDay = 0;
+        } else {
+          positionDay++;
+        }
+
+      }
     }
 
   }
@@ -197,6 +227,16 @@ export class LoginComponent implements OnInit {
         label : "Décembre"
       },
     ]
+
+  }
+
+  initYears() {
+
+    let self = this;
+
+    for (let i = self.now.getFullYear() ; i < (self.now.getFullYear() + 5) ; i++) {
+      self.years.push(i);
+    }    
 
   }
 

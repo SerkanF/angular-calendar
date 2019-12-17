@@ -14,38 +14,48 @@
 
 </select>
 
-{{yearSelected}}  {{monthSelected.label}}
+<div class="box-calendar">
+    <div class="header-calendar">
+        {{monthSelected.label}} {{yearSelected}}  
+    </div>
 
+    <div class="days-week">
+        <div>
+            Lu
+        </div>
+        <div>
+            Ma
+        </div>
+        <div>
+            Me
+        </div>
+        <div>
+            Je
+        </div>
+        <div>
+            Ve
+        </div>
+        <div>
+            Sa
+        </div>
+        <div>
+            Di
+        </div>
+    </div>
 
-<div style="width: 700px;">
-    <div style="width: 100px; float: left;">
-        Lundi
+    <div class="days">
+        <div *ngFor="let day of grillDays" (click)="changeDay(day)">
+            {{day.value | date : 'd' }}
+        </div>
     </div>
-    <div style="width: 100px; float: left;">
-        Mardi
-    </div>
-    <div style="width: 100px; float: left;">
-        Mercredi
-    </div>
-    <div style="width: 100px; float: left;">
-        Jeudi
-    </div>
-    <div style="width: 100px; float: left;">
-        Vendredi
-    </div>
-    <div style="width: 100px; float: left;">
-        Samedi
-    </div>
-    <div style="width: 100px; float: left;">
-        Dimanche
-    </div>
+
 </div>
 
-<div style="width: 700px;">
-    <div 
-        *ngFor="let day of grillDays"
-        style="width: 100px; float: left;">
-            {{day.label}} {{day.value}}
+<div *ngIf="currentDate != null">
+    {{currentDate | date : 'yyyy/MM/dd'}}
+
+    <div class="zone" *ngFor="let zone of ZONES">
+        
     </div>
 
 </div>
